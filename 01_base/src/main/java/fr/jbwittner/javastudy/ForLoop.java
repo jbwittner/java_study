@@ -36,17 +36,23 @@ public class ForLoop {
     }
 
     public static void upgrade() {
-        List<Integer> liste = new ArrayList<>();
+        List<Integer> listData = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            liste.add(i);
+            listData.add(i);
         }
 
-        for (Iterator<Integer> iter = liste.iterator(); iter.hasNext(); ) {
+        for (Iterator<Integer> iter = listData.iterator(); iter.hasNext(); ) {
             System.out.println("before - upgrade : " + iter.next());
         }
 
-        for (Object element : liste) {
+        for (Object element : listData) {
             System.out.println("after - upgrade : " + element);
+        }
+
+        int[] arrayData = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+        for (int element : arrayData) {
+            System.out.println("arrayData : " + element);
         }
     }
 }
