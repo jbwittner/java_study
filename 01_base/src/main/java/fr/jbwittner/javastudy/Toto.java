@@ -1,7 +1,8 @@
 package fr.jbwittner.javastudy;
 
-public class App {
+public class Toto {
+
     public static void main(String[] args) {
-        System.out.println("Hello App!");
+        System.out.println("Hello Toto!");
     }
 }
