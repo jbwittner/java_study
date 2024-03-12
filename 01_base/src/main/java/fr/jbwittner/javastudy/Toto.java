@@ -4,9 +4,17 @@ public class Toto {
 
     public static void main(String[] args) {
         System.out.println("Hello Toto!");
+        toutati();
         test();
         testEntierBinaire();
     }
+
+    public static void toutati() {
+        char code = 'D';
+        int index = code - 'A';
+        System.out.println("index = " + index);
+    } 
+
 
     public static void test() {
         float pi = 3.141f;
