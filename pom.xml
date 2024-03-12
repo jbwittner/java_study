@@ -9,7 +9,8 @@
     <description>Project to learn java</description>
     <modules>
         <module>01_base</module>
-        <module>03_java17</module>
+        <module>03_java11</module>
+        <module>04_java17</module>
     </modules>
     <build>
         <plugins>
