@@ -3,78 +3,85 @@ package fr.jbwittner.javastudy;
 public class Conditions {
 
     public static void main(String[] args) {
-        ifCondition();
-        ternaire();
-        switchTest();
+        ifCondition(); // Demonstration of if-else condition
+        ternaryOperation(); // Demonstration of ternary operation
+        switchTest(); // Demonstration of switch case and enhanced switch case
     }
 
+    // Demonstrates the use of if-else to check if a number is even or odd
     public static void ifCondition() {
-        estPaire(2);
-        estPaire(3);
+        isEven(2); // Checking if 2 is even
+        isEven(3); // Checking if 3 is odd
     }
 
-    public static void estPaire(int val) {
-        if (val % 2 == 0) {
-            System.out.println(val + " est paire");
+    // Checks if the given value is even or odd and prints the result
+    public static void isEven(int value) {
+        if (value % 2 == 0) {
+            System.out.println(value + " is even");
         } else {
-            System.out.println(val + " est impaire");
+            System.out.println(value + " is odd");
         }
     }
 
-    public static void ternaire() {
-        int niveau = 5;
+    // Demonstrates the use of a ternary operation to assign values
+    public static void ternaryOperation() {
+        int level = 5;
 
+        // Equivalent to int total = (level == 5) ? 10 : 5;
         int total;
-        if (niveau == 5) // équivalent à total = (niveau == 5) ? 10 : 5;
-        total = 10;
+        if (level == 5) total = 10;
         else total = 5;
 
-        System.out.println("ternaire - total : " + total);
+        System.out.println("ternary - total: " + total);
 
-        int total2 = (niveau == 5) ? 10 : 5;
+        // Using ternary operator directly
+        int total2 = (level == 5) ? 10 : 5;
 
-        System.out.println("ternaire - total2 : " + total2);
+        System.out.println("ternary - total2: " + total2);
     }
 
+    // Demonstrates the use of switch case to return Boolean values based on string input
     public static void switchTest() {
-        System.out.println("switchTest - getReponse('oui') : " + getReponse("oui"));
-        System.out.println("switchTest - getReponse('non') : " + getReponse("non"));
-        System.out.println("switchTest - getReponse('oUI') : " + getReponse("oUI"));
-        System.out.println("switchTest - getReponseUpgrade('oUI') : " + getReponseUpgrade("oUI"));
+        System.out.println("switchTest - getResponse('yes'): " + getResponse("yes"));
+        System.out.println("switchTest - getResponse('no'): " + getResponse("no"));
+        System.out.println("switchTest - getResponse('yEs'): " + getResponse("yEs"));
+        System.out.println("switchTest - getEnhancedResponse('yEs'): " + getEnhancedResponse("yEs"));
     }
 
-    public static Boolean getReponse(String reponse) {
-        Boolean resultat = null;
-        switch (reponse) {
-            case "oui":
-            case "Oui":
-                resultat = true;
+    // Returns true for "yes", false for "no", and null for any other input (case-sensitive)
+    public static Boolean getResponse(String response) {
+        Boolean result = null;
+        switch (response) {
+            case "yes":
+            case "Yes":
+                result = true;
                 break;
-            case "non":
-            case "Non":
-                resultat = false;
+            case "no":
+            case "No":
+                result = false;
                 break;
             default:
-                resultat = null;
+                result = null;
                 break;
         }
-        return resultat;
+        return result;
     }
 
-    public static Boolean getReponseUpgrade(String reponse) {
-        Boolean resultat = null;
+    // Enhanced version of getResponse that is case-insensitive
+    public static Boolean getEnhancedResponse(String response) {
+        Boolean result = null;
 
-        switch (reponse.toLowerCase()) {
-            case "oui":
-                resultat = true;
+        switch (response.toLowerCase()) {
+            case "yes":
+                result = true;
                 break;
-            case "non":
-                resultat = false;
+            case "no":
+                result = false;
                 break;
             default:
-                resultat = null;
+                result = null;
                 break;
         }
-        return resultat;
+        return result;
     }
 }
