@@ -3,13 +3,13 @@ package fr.jbwittner.javastudy;
 public class Conditions {
 
     public static void main(String[] args) {
-        ifCondition(); // Demonstration of if-else condition
-        ternaryOperation(); // Demonstration of ternary operation
-        switchTest(); // Demonstration of switch case and enhanced switch case
+        demonstrateIfCondition(); // Demonstration of if-else condition
+        demonstrateTernaryOperation(); // Demonstration of ternary operation
+        demonstrateSwitchTest(); // Demonstration of switch case and enhanced switch case
     }
 
     // Demonstrates the use of if-else to check if a number is even or odd
-    public static void ifCondition() {
+    public static void demonstrateIfCondition() {
         isEven(2); // Checking if 2 is even
         isEven(3); // Checking if 3 is odd
     }
@@ -24,7 +24,7 @@ public class Conditions {
     }
 
     // Demonstrates the use of a ternary operation to assign values
-    public static void ternaryOperation() {
+    public static void demonstrateTernaryOperation() {
         int level = 5;
 
         // Equivalent to int total = (level == 5) ? 10 : 5;
@@ -41,7 +41,7 @@ public class Conditions {
     }
 
     // Demonstrates the use of switch case to return Boolean values based on string input
-    public static void switchTest() {
+    public static void demonstrateSwitchTest() {
         System.out.println("switchTest - getResponse('yes'): " + getResponse("yes"));
         System.out.println("switchTest - getResponse('no'): " + getResponse("no"));
         System.out.println("switchTest - getResponse('yEs'): " + getResponse("yEs"));
