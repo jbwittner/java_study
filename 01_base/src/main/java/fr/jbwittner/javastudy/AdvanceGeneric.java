@@ -1,8 +1,5 @@
 package fr.jbwittner.javastudy;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class AdvanceGeneric {
 
     public static void main(String[] args) {
@@ -10,9 +7,10 @@ public class AdvanceGeneric {
     }
 
     public static void veryComplexeGeneric() {
-        MyEntityRepositoryMockFactory factory = new MyEntityRepositoryMockFactory();
+        UserEntityRepositoryMockFactory factory = new UserEntityRepositoryMockFactory();
         factory.mockFindById(45);
-        MyRepository<MyEntity, Integer> repository = factory.createRepository();
+        UserEntityRepository repository = factory.getRepository();
+        repository.findById(45);
     }
 }
 
@@ -25,40 +23,11 @@ interface MyRepository<T, ID> {
     void delete(T entity);
 }
 
-// Implémentation simple d'un repository en mémoire
-class SimpleInMemoryRepository<T, ID> implements MyRepository<T, ID> {
-    private final Map<ID, T> storage = new HashMap<>();
-
-    @Override
-    public T findById(ID id) {
-        return storage.get(id); // Retourne l'entité ou null si non trouvée
-    }
-
-    @Override
-    public T save(T entity) {
-        ID id = extractId(entity);
-        storage.put(id, entity);
-        return entity;
-    }
-
-    @Override
-    public void delete(T entity) {
-        ID id = extractId(entity);
-        storage.remove(id);
-    }
-
-    // Méthode simplifiée pour extraire l'ID - à adapter selon votre logique d'identification
-    private ID extractId(T entity) {
-        // Ici, adaptez la logique pour extraire l'ID depuis l'entité
-        return null; // Exemple simplifié
-    }
-}
-
 // Classe abstraite d'usine pour créer des mocks de repositories
 abstract class AbstractRepositoryMockFactory<T, R extends MyRepository<T, ID>, ID> {
     protected final R repository;
 
-    public abstract R createRepository();
+    protected abstract R createRepository();
 
     protected AbstractRepositoryMockFactory() {
         this.repository = createRepository();
@@ -69,35 +38,72 @@ abstract class AbstractRepositoryMockFactory<T, R extends MyRepository<T, ID>, I
     }
 
     // Méthodes mock avec logs
-    public T mockFindById(Integer id) {
+    public AbstractRepositoryMockFactory<T, R, ID> mockFindById(Integer id) {
         System.out.println("Mock findById called with ID: " + id);
-        return null; // Retourne null pour simplifier l'exemple
+        return this; // Retourne null pour simplifier l'exemple
     }
 
-    public T mockSave(T entity) {
+    public AbstractRepositoryMockFactory<T, R, ID> mockSave(T entity) {
         System.out.println("Mock save called with Entity: " + entity);
-        return entity; // Retourne directement l'entité pour simplifier
+        return this; // Retourne directement l'entité pour simplifier
     }
 
-    public void mockDelete(T entity) {
+    public AbstractRepositoryMockFactory<T, R, ID> mockDelete(T entity) {
         System.out.println("Mock delete called with Entity: " + entity);
         // Ne fait rien pour simplifier
+        return this;
     }
 }
 
 // Exemple d'utilisation
-class MyEntity {}
+class UserEntity {}
 
-class MyEntityRepositoryMockFactory
-        extends AbstractRepositoryMockFactory<MyEntity, MyRepository<MyEntity, Integer>, Integer> {
+// Définition de notre propre interface de repository
+interface UserEntityRepository extends MyRepository<UserEntity, Integer> {
+    UserEntity findByUserName(String UserName);
+}
 
-    public MyEntityRepositoryMockFactory() {
+class UserEntityRepositorImpl implements UserEntityRepository {
+
+    @Override
+    public UserEntity findById(Integer id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    }
+
+    @Override
+    public UserEntity save(UserEntity entity) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    }
+
+    @Override
+    public void delete(UserEntity entity) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public UserEntity findByUserName(String UserName) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByUserName'");
+    }
+}
+
+class UserEntityRepositoryMockFactory extends AbstractRepositoryMockFactory<UserEntity, UserEntityRepository, Integer> {
+
+    public UserEntityRepositoryMockFactory() {
         super();
     }
 
     @Override
-    public MyRepository<MyEntity, Integer> createRepository() {
-        // Retourner une instance concrète de MyRepository pour MyEntity
-        return new SimpleInMemoryRepository<>();
+    protected UserEntityRepository createRepository() {
+        return new UserEntityRepositorImpl();
+    }
+
+    public UserEntityRepositoryMockFactory mockFindByUserId(String UserName) {
+        System.out.println("Mock findById called with UserName: " + UserName);
+        // Ne fait rien pour simplifier
+        return this;
     }
 }
