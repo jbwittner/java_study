@@ -85,6 +85,11 @@ public class Generic {
 
         System.out.println(anotherExample);
     }
+
+    public static void veryComplexeGeneric() {
+        MyEntityRepositoryMockFactory factory = new MyEntityRepositoryMockFactory();
+        MyRepository<MyEntity, Integer> repository = factory.createRepository();
+    }
 }
 
 class GenericBox<T> {
@@ -221,3 +226,12 @@ abstract class AbstractRepositoryMockFactory<T, R extends MyRepository<T, ID>, I
 
 // Exemple d'utilisation
 class MyEntity {}
+
+class MyEntityRepositoryMockFactory
+        extends AbstractRepositoryMockFactory<MyEntity, MyRepository<MyEntity, Integer>, Integer> {
+    @Override
+    public MyRepository<MyEntity, Integer> createRepository() {
+        // Retourner une instance concrète de MyRepository pour MyEntity
+        return new SimpleInMemoryRepository<>();
+    }
+}
