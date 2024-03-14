@@ -38,6 +38,13 @@ public class Loop {
         do {
             System.out.println(i++);
         } while (i <= 3);
+
+        System.out.println("milieu");
+
+        do {
+            System.out.println(i++);
+        } while (i <= 3);
+
         System.out.println("fin");
     }
 
