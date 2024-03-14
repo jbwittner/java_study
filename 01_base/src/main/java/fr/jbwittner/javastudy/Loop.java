@@ -4,17 +4,45 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ForLoop {
+public class Loop {
 
     public static void main(String[] args) {
-        demonstrateSimpleLoop();
-        demonstrateComplexCondition();
-        demonstrateBooleanControl();
-        demonstrateEnhancements();
+        demonstrateSimpleWhileLoop();
+        demonstrateSimpleDoWhileLoop();
+        demonstrateSimpleForLoop();
+        demonstrateComplexForCondition();
+        demonstrateBooleanForLoopControl();
+        demonstrateForLoopEnhancements();
     }
 
     // Demonstrates a simple for-loop with a single variable
-    public static void demonstrateSimpleLoop() {
+    public static void demonstrateSimpleWhileLoop() {
+        System.out.println("debut");
+        int i = 1;
+        while (i <= 3) {
+            System.out.println(i++);
+        }
+
+        System.out.println("milieu");
+
+        while (i <= 3) {
+            System.out.println(i++);
+        }
+        System.out.println("fin");
+    }
+
+    // Demonstrates a simple for-loop with a single variable
+    public static void demonstrateSimpleDoWhileLoop() {
+        System.out.println("debut");
+        int i = 1;
+        do {
+            System.out.println(i++);
+        } while (i <= 3);
+        System.out.println("fin");
+    }
+
+    // Demonstrates a simple for-loop with a single variable
+    public static void demonstrateSimpleForLoop() {
         System.out.println("Simple Loop Example:");
         for (int i = 1; i < 4; i++) {
             System.out.println("Iteration: " + i);
@@ -23,7 +51,7 @@ public class ForLoop {
     }
 
     // Demonstrates a for-loop with multiple variables and a complex condition
-    public static void demonstrateComplexCondition() {
+    public static void demonstrateComplexForCondition() {
         System.out.println("Complex Condition Example:");
         for (int i = 0, j = 0; i * j < 1000; i++, j += 2) {
             System.out.println("i: " + i + " - j: " + j);
@@ -32,7 +60,7 @@ public class ForLoop {
     }
 
     // Demonstrates a for-loop controlled by a boolean flag
-    public static void demonstrateBooleanControl() {
+    public static void demonstrateBooleanForLoopControl() {
         System.out.println("Boolean Control Example:");
         boolean found = false;
         for (int i = 0; !found; i++) {
@@ -46,7 +74,7 @@ public class ForLoop {
     }
 
     // Demonstrates various enhancements and iterations over collections and arrays
-    public static void demonstrateEnhancements() {
+    public static void demonstrateForLoopEnhancements() {
         System.out.println("Enhancements Example:");
 
         // Demonstrating iteration over a List with an Iterator
