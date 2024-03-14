@@ -221,7 +221,17 @@ class SimpleInMemoryRepository<T, ID> implements MyRepository<T, ID> {
 
 // Classe abstraite d'usine pour créer des mocks de repositories
 abstract class AbstractRepositoryMockFactory<T, R extends MyRepository<T, ID>, ID> {
+    protected final R repository;
+
     public abstract R createRepository();
+
+    protected AbstractRepositoryMockFactory() {
+        this.repository = createRepository();
+    }
+
+    public R getRepository() {
+        return repository;
+    }
 }
 
 // Exemple d'utilisation
@@ -229,6 +239,11 @@ class MyEntity {}
 
 class MyEntityRepositoryMockFactory
         extends AbstractRepositoryMockFactory<MyEntity, MyRepository<MyEntity, Integer>, Integer> {
+
+    public MyEntityRepositoryMockFactory() {
+        super();
+    }
+
     @Override
     public MyRepository<MyEntity, Integer> createRepository() {
         // Retourner une instance concrète de MyRepository pour MyEntity
