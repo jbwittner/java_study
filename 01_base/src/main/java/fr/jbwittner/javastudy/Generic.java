@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+// Demonstrates the usage of generics in Java.
 public class Generic {
 
     public static void main(String[] args) {
@@ -18,22 +19,26 @@ public class Generic {
 
         System.out.println("\n--- Interface Constraint Example ---");
         interfaceConstraintExample();
+
+        System.out.println("\n--- Complex Generic Example ---");
+        complexGeneric();
     }
 
+    // Demonstrates a list without using generics.
     public static void withoutGeneric() {
         List list = new ArrayList();
-        String value;
         for (int i = 0; i < 10; i++) {
-            value = Integer.toString(i);
+            String value = Integer.toString(i);
             list.add(value);
         }
 
         for (Iterator iter = list.iterator(); iter.hasNext(); ) {
-            value = (String) iter.next();
+            String value = (String) iter.next();
             System.out.println(value.toUpperCase());
         }
     }
 
+    // Demonstrates a list with generics for type safety.
     public static void withGeneric() {
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -46,6 +51,7 @@ public class Generic {
         }
     }
 
+    // Shows how to use generic classes.
     public static void genericExample() {
         GenericBox<Integer> integerBox = new GenericBox<>();
         integerBox.add(10);
@@ -62,27 +68,24 @@ public class Generic {
         System.out.println("GenericPair isEqual: " + isEqual);
     }
 
+    // Demonstrates the use of interface constraints in generics.
     public static void interfaceConstraintExample() {
         DisplayBox<DisplayableString> box = new DisplayBox<>();
         box.add(new DisplayableString("Hello, Interface Constraint!"));
-        box.displayItem(); // This will call the display method of the contained DisplayableString
-        // object
+        box.displayItem();
     }
 
-    public static void complexeGeneric() {
-        // Création d'une instance complexe avec une clé String et une paire d'un Integer et d'une
-        // String
-        ComplexGeneric<String, Integer, String> example = new ComplexGeneric<>("Clef", 42, "Valeur");
-
+    // Demonstrates a more complex use of generics.
+    public static void complexGeneric() {
+        ComplexGeneric<String, Integer, String> example = new ComplexGeneric<>("Key", 42, "Value");
         System.out.println(example);
 
-        // Création d'une instance complexe avec une clé Integer et une paire de deux Strings
         ComplexGeneric<Integer, String, String> anotherExample = new ComplexGeneric<>(1, "Hello", "World");
-
         System.out.println(anotherExample);
     }
 }
 
+// A generic class to hold a single value of any type.
 class GenericBox<T> {
     private T t;
 
@@ -95,6 +98,7 @@ class GenericBox<T> {
     }
 }
 
+// A generic class to hold a pair of values of any types.
 class GenericPair<K, V> {
     private K key;
     private V value;
@@ -113,16 +117,19 @@ class GenericPair<K, V> {
     }
 }
 
+// A generic method to compare two GenericPair objects for equality.
 class GenericMethod {
     public static <K, V> boolean compare(GenericPair<K, V> p1, GenericPair<K, V> p2) {
         return p1.getKey().equals(p2.getKey()) && p1.getValue().equals(p2.getValue());
     }
 }
 
+// An interface for objects that can be displayed.
 interface Displayable {
     void display();
 }
 
+// A generic class that can hold and display any Displayable object.
 class DisplayBox<T extends Displayable> {
     private T item;
 
@@ -135,6 +142,7 @@ class DisplayBox<T extends Displayable> {
     }
 }
 
+// Implementation of Displayable for strings.
 class DisplayableString implements Displayable {
     private String content;
 
@@ -148,7 +156,7 @@ class DisplayableString implements Displayable {
     }
 }
 
-// Classe générique associant une clé à une paire de valeurs
+// A generic class that associates a key with a pair of values.
 class ComplexGeneric<K, V, T> {
     private K key;
     private GenericPair<V, T> pair;
