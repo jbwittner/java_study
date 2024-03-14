@@ -1,6 +1,6 @@
 package fr.jbwittner.javastudy.pojo;
 
-public class ModificateurAccess {
+public class Heritage {
 
     public static void main(String[] args) {
         testFormes();
@@ -14,6 +14,12 @@ public class ModificateurAccess {
         System.out.println("Périmètre du cercle: " + cercle.perimetre());
         System.out.println("Aire du rectangle: " + rectangle.aire());
         System.out.println("Périmètre du rectangle: " + rectangle.perimetre());
+
+        rectangle.afficherDetails();
+        cercle.afficherDetails();
+
+        rectangle.afficherType();
+        cercle.afficherType();
     }
 }
 
@@ -26,17 +32,36 @@ class Constante {
     }
 }
 
-abstract class Forme {
+interface Dessinable {
+    // Méthode pour dessiner la forme
+    void dessiner();
+
+    // Méthode default dans l'interface
+    default void afficherType() {
+        System.out.println("Ceci est une forme géométrique.");
+    }
+}
+
+abstract class Forme implements Dessinable {
 
     // Méthode abstraite pour calculer l'aire de la forme
     public abstract double aire();
 
     // Méthode abstraite pour calculer le périmètre de la forme
     public abstract double perimetre();
+
+    // Méthode non abstraite pour afficher les détails de la forme
+    public void afficherDetails() {
+        System.out.println("Détails de la forme :");
+        System.out.println("Aire : " + this.aire());
+        System.out.println("Périmètre : " + this.perimetre());
+        this.dessiner(); // Cette méthode dessine également la forme
+    }
 }
 
 class Cercle extends Forme {
     private double rayon;
+    private static final double CST_PI = Math.PI;
 
     public Cercle(double rayon) {
         this.rayon = rayon;
@@ -44,12 +69,22 @@ class Cercle extends Forme {
 
     @Override
     public double aire() {
-        return Math.PI * rayon * rayon;
+        return Cercle.CST_PI * rayon * rayon;
     }
 
     @Override
     public double perimetre() {
-        return 2 * Math.PI * rayon;
+        return 2 * Cercle.CST_PI * rayon;
+    }
+
+    @Override
+    public void dessiner() {
+        System.out.println("Dessiner un cercle de rayon " + rayon);
+    }
+
+    @Override
+    public void afficherType() {
+        System.out.println("Ceci est un cercle.");
     }
 }
 
@@ -70,5 +105,10 @@ class Rectangle extends Forme {
     @Override
     public double perimetre() {
         return 2 * (longueur + largeur);
+    }
+
+    @Override
+    public void dessiner() {
+        System.out.println("Dessiner un rectangle de longueur " + longueur + " et de largeur " + largeur);
     }
 }
