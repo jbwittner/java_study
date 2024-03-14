@@ -53,6 +53,13 @@ public class Heritage {
         triangle.demoGeometrique();
         triangle.comparerAireAvec(cercle);
         System.out.println("Comparaison aire triangle avec cercle: " + triangle.comparerAireAvec(cercle));
+
+        Rectangle.maMethode();
+        Rectangle.monAutreMethode();
+        Cercle.maMethode();
+        Cercle.monAutreMethode();
+        Triangle.maMethode();
+        Triangle.monAutreMethode();
     }
 }
 
@@ -83,6 +90,14 @@ abstract class Forme implements Dessinable {
     // Méthode abstraite pour calculer le périmètre de la forme
     public abstract double perimetre();
 
+    public static void maMethode() {
+        System.out.println("Forme");
+    }
+
+    public static void monAutreMethode() {
+        maMethode();
+    }
+
     // Méthode non abstraite pour afficher les détails de la forme
     public void afficherDetails() {
         System.out.println("Détails de la forme :");
@@ -98,6 +113,10 @@ class Cercle extends Forme {
 
     public Cercle(double rayon) {
         this.rayon = rayon;
+    }
+
+    public static void maMethode() {
+        System.out.println("Cercle");
     }
 
     @Override
