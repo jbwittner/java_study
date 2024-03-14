@@ -68,25 +68,28 @@ class UserEntityRepositorImpl implements UserEntityRepository {
     @Override
     public UserEntity findById(Integer id) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        System.out.println("Unimplemented method 'findById'");
+        return null;
     }
 
     @Override
     public UserEntity save(UserEntity entity) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        System.out.println("Unimplemented method 'save'");
+        return null;
     }
 
     @Override
     public void delete(UserEntity entity) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        System.out.println("Unimplemented method 'delete'");
     }
 
     @Override
     public UserEntity findByUserName(String UserName) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByUserName'");
+        System.out.println("Unimplemented method 'findByUserName'");
+        return null;
     }
 }
 
