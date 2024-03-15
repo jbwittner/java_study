@@ -8,64 +8,66 @@ import java.util.concurrent.atomic.LongAdder;
 
 public class StreamExample {
 
+    // Main method demonstrating various examples of using streams and without using streams.
     public static void main(String[] args) {
-        wihtoutStream();
+        System.out.println("Calculating sum without Stream.");
+        withoutStream();
+        System.out.println("Calculating sum with forEach loop and LongAdder.");
         withStream();
+        System.out.println("Calculating sum with Stream.");
         withAnotherStream();
+        System.out.println("Calculating average weight without Stream.");
         collectionWithoutStream();
+        System.out.println("Calculating average weight with Stream.");
         collectionWithStream();
     }
 
-    public static void wihtoutStream() {
-        List<Integer> entiers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-        Iterator<Integer> it = entiers.iterator();
-        long somme = 0;
-        while (it.hasNext()) {
-            int valeur = it.next();
-            if (valeur < 10) {
-                somme += valeur;
+    // Method to calculate sum of integers less than 10 without using streams.
+    public static void withoutStream() {
+        List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+        Iterator<Integer> iterator = integers.iterator();
+        long sum = 0;
+        while (iterator.hasNext()) {
+            int value = iterator.next();
+            if (value < 10) {
+                sum += value;
             }
         }
-        System.out.println(somme);
+        System.out.println("Sum without stream: " + sum);
     }
 
+    // Method to calculate sum of integers less than 10 using forEach and LongAdder.
     public static void withStream() {
-        List<Integer> entiers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+        List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
 
-        LongAdder somme = new LongAdder();
-        entiers.forEach(valeur -> {
-            if (valeur < 10) {
-                somme.add(valeur);
+        LongAdder sum = new LongAdder();
+        integers.forEach(value -> {
+            if (value < 10) {
+                sum.add(value);
             }
         });
-        System.out.println(somme);
+        System.out.println("Sum with forEach and LongAdder: " + sum);
     }
 
+    // Method to calculate sum of integers less than 10 using stream.
     public static void withAnotherStream() {
-        List<Integer> entiers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+        List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
 
-        long somme = entiers.stream().filter(v -> v < 10).mapToInt(i -> i).sum();
-        System.out.println(somme);
+        long sum = integers.stream().filter(v -> v < 10).mapToInt(i -> i).sum();
+        System.out.println("Sum with stream: " + sum);
     }
 
-    public static void parallelStream() {
-        List<Integer> entiers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-
-        long somme =
-                entiers.parallelStream().filter(v -> v < 10).mapToInt(i -> i).sum();
-        System.out.println(somme);
-    }
-
+    // Method to calculate the average weight of females without using streams.
     public static void collectionWithoutStream() {
 
-        class Personne {
+        class Person {
             private String point;
-            private String genre;
+            private String gender;
             private Integer weight;
 
-            public Personne(String point, String genre, Integer weight) {
+            public Person(String point, String gender, Integer weight) {
                 this.point = point;
-                this.genre = genre;
+                this.gender = gender;
                 this.weight = weight;
             }
 
@@ -73,41 +75,42 @@ public class StreamExample {
                 return weight;
             }
 
-            public String getGenre() {
-                return genre;
+            public String getGender() {
+                return gender;
             }
         }
 
-        List<Personne> personnes = new ArrayList<>(6);
-        personnes.add(new Personne("p1", "HOMME", 176));
-        personnes.add(new Personne("p2", "HOMME", 190));
-        personnes.add(new Personne("p3", "FEMME", 172));
-        personnes.add(new Personne("p4", "FEMME", 162));
-        personnes.add(new Personne("p5", "HOMME", 176));
-        personnes.add(new Personne("p6", "FEMME", 168));
+        List<Person> people = new ArrayList<>(6);
+        people.add(new Person("p1", "MALE", 176));
+        people.add(new Person("p2", "MALE", 190));
+        people.add(new Person("p3", "FEMALE", 172));
+        people.add(new Person("p4", "FEMALE", 162));
+        people.add(new Person("p5", "MALE", 176));
+        people.add(new Person("p6", "FEMALE", 168));
 
         long total = 0;
-        int nbPers = 0;
-        for (Personne personne : personnes) {
-            if (personne.getGenre() == "FEMME") {
-                nbPers++;
-                total += personne.getWeight();
+        int count = 0;
+        for (Person person : people) {
+            if ("FEMALE".equals(person.getGender())) {
+                count++;
+                total += person.getWeight();
             }
         }
-        double resultat = (double) total / nbPers;
-        System.out.println("Poids moyenne des femmes = " + resultat);
+        double average = (double) total / count;
+        System.out.println("Average weight of females without stream: " + average);
     }
 
+    // Method to calculate the average weight of females using streams.
     public static void collectionWithStream() {
 
-        class Personne {
+        class Person {
             private String point;
-            private String genre;
+            private String gender;
             private Integer weight;
 
-            public Personne(String point, String genre, Integer weight) {
+            public Person(String point, String gender, Integer weight) {
                 this.point = point;
-                this.genre = genre;
+                this.gender = gender;
                 this.weight = weight;
             }
 
@@ -115,24 +118,24 @@ public class StreamExample {
                 return weight;
             }
 
-            public String getGenre() {
-                return genre;
+            public String getGender() {
+                return gender;
             }
         }
 
-        List<Personne> personnes = new ArrayList<>(6);
-        personnes.add(new Personne("p1", "HOMME", 176));
-        personnes.add(new Personne("p2", "HOMME", 190));
-        personnes.add(new Personne("p3", "FEMME", 172));
-        personnes.add(new Personne("p4", "FEMME", 162));
-        personnes.add(new Personne("p5", "HOMME", 176));
-        personnes.add(new Personne("p6", "FEMME", 168));
+        List<Person> people = new ArrayList<>(6);
+        people.add(new Person("p1", "MALE", 176));
+        people.add(new Person("p2", "MALE", 190));
+        people.add(new Person("p3", "FEMALE", 172));
+        people.add(new Person("p4", "FEMALE", 162));
+        people.add(new Person("p5", "MALE", 176));
+        people.add(new Person("p6", "FEMALE", 168));
 
-        double resultat = personnes.stream()
-                .filter(p -> p.getGenre() == "FEMME")
-                .mapToInt(p -> p.getWeight())
+        double average = people.stream()
+                .filter(p -> "FEMALE".equals(p.getGender()))
+                .mapToInt(Person::getWeight)
                 .average()
-                .getAsDouble();
-        System.out.println("Poids moyenne des femmes = " + resultat);
+                .orElse(Double.NaN);
+        System.out.println("Average weight of females with stream: " + average);
     }
 }
