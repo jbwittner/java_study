@@ -28,6 +28,7 @@ public class Lambda {
         noParamater();
         singleParameter();
         mulitpleParameters();
+        comparator();
     }
 
     public static void withoutLambda() {
@@ -97,7 +98,7 @@ public class Lambda {
         list.forEach((n) -> System.out.println(n));
     }
 
-    public static void coparator() {
+    public static void comparator() {
 
         class Product {
             int id;
