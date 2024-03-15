@@ -7,8 +7,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <groupId>fr.jbwittner.javastudy</groupId>
-    <artifactId>03_java11</artifactId>
-    <name>03_java11</name>
+    <artifactId>04_java17</artifactId>
+    <name>04_java17</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
     <properties>
