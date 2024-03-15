@@ -5,21 +5,24 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class Lambda {
+public class LambdaAndFunctionalInterface {
 
-    // Functional interfaces to support lambda expressions in this example.
+    @FunctionalInterface
     interface Drawable {
         void draw();
     }
 
+    @FunctionalInterface
     interface Sayable {
         String say();
     }
 
+    @FunctionalInterface
     interface SayableParameter {
         String say(String name);
     }
 
+    @FunctionalInterface
     interface Addable {
         int add(int a, int b);
     }
